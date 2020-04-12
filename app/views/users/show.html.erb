@@ -1,6 +1,5 @@
 <div class = "dropdown-item"><%= link_to "Logout", logout_path, method: :delete %>
   </div>
-
 <div class = "row">
     <aside class = "col-sm-4">
         <div class = "card">
@@ -10,14 +9,30 @@
             <div class = "card-body">
                 <img class = "rounded img-fluid" src = "<%= gravatar_url(@user, 
                 { size: 500 }) %>" alt = "">
+                
+              <div class = "dropdown-item"><%= link_to "新規投稿する", tasks_path %>
+              </div>
             </div>
+            
+
+
+
         </div>
     </aside>
     <div class = "col-sm-8">
         <ul class = "nav nav-tabs nav-justified mb-3">
-            <li class = "nav-item"><a href = "#" class = "nav-link">Microposts</a></li>
+            <li class = "nav-item"><a href = 
+            "<%= user_path(@user) %>"
+            class = "nav-link
+            <%= "active" if current_page?(user_path(@user)) %>
+            ">Microposts
+            <span class = "badge badge-secondary">
+                <%= @count_tasks %>
+            </span></a></li>
             <li class = "nav-item"><a href = "#" class = "nav-link">Followings</a></li>
             <li class = "nav-item"><a href = "#" class = "nav-link">Followers</a></li>
         </ul>
+        
+        <%= render "tasks/tasks", tasks: @tasks %>
     </div>
 </div>
