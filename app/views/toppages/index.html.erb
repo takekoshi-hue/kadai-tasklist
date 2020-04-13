@@ -1,10 +1,10 @@
-<% if logged_in? %>
+ <% if logged_in? %>
   
   <p>ログイン完了ユーザ: <%= current_user.name %></p>
   
   <div class = "row">
     <aside class = "col-sm-4">
-      
+      <p>タスク</p>
       <%= form_with(model: @task, local: true) do |f| %>
       
       <div class = "form-group">
@@ -13,8 +13,18 @@
         
       </div>
       
+      <p>ステータス</p>
+      <%= form_with(model: @task, local: true) do |f| %>
+      
+      <div class = "form-group">
+        
+        <%= f.text_area :status, class: "form-control", rows: 5 %>
+        
+      </div>
+     
       <%= f.submit "Post", class: "btn btn-primary btn-block" %>
       
+      <% end %>
       <% end %>
       
       
@@ -27,8 +37,10 @@
     </div>
   </div>
   
-  <div class = "dropdown-item"><%= link_to "Logout", logout_path, method: :delete %>
-  </div>
+  
+  
+  
+ 
   <% else %>
   
 
