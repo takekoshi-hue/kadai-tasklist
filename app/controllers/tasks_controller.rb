@@ -1,13 +1,11 @@
 class TasksController < ApplicationController
    
     before_action :require_user_logged_in
-    before_action :correct_user, only: [:destroy]
+    before_action :correct_user, 
+    only: [:destroy, :updata, :show ]
     def index
-        if logged_in?
-        @task = current_user.tasks.build
+        
         @tasks = current_user.tasks.order(id: :desc)
-         
-     end
     end
     
     def show
@@ -26,7 +24,7 @@ class TasksController < ApplicationController
     else
       @tasks = current_user.tasks.order(id: :desc)
       flash.now[:danger] = 'タスクの投稿に失敗しました。'
-      render 'tasks/index'
+      render 'tasks/new'
         end
     end
     

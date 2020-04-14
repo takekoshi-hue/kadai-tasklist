@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   
-  get 'toppages/index'
+
   get 'users/index'
   get 'users/show'
   get 'users/new'
