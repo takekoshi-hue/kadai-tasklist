@@ -3,6 +3,9 @@ class TasksController < ApplicationController
     before_action :require_user_logged_in
     before_action :correct_user, 
     only: [:destroy, :updata, :show ]
+    
+    before_action :current_user,
+    only:  [:destroy, :updata, :show ]
     def index
         
         @tasks = current_user.tasks.order(id: :desc)
